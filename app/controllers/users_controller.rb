@@ -15,14 +15,24 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    user =
+        User.create username: params[:username],
+                                password: params[:password],
+                                password_confirmation: params[:password_confirmation],
+                                email: params[:email],
+                                phone_number: params[:phone_number]
 
-    if @user.save
-      render json: @user, status: :created, location: @user
+    if user.valid?
+        session[:user_id] = user.id
+        render json: user, status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+        render json: {
+                          errors: user.errors.full_messages,
+                      },
+                      status: :unprocessable_entity
     end
-  end
+end
+end
 
   # PATCH/PUT /users/1
   def update

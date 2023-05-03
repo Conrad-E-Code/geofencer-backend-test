@@ -38,6 +38,9 @@ gem "bootsnap", require: false
 # haversine gem for calculating distances with coordinates. https://github.com/kristianmandrup/haversine
  gem 'haversine', '~> 0.3.0'
 
+ # serializer gem for serializing json responses
+ gem 'active_model_serializers', '~> 0.10.2'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
